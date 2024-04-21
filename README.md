@@ -2,6 +2,8 @@
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
+It serves as a demonstration of how you can create an end-to-end test for a tutorial using Playwright.
+
 ## Running Locally
 
 ### Installation
