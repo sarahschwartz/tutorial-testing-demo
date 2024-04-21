@@ -41,7 +41,7 @@ data-name="writeToFile"
 data-filepath="tests-output/project-folder/my-app/src/App.js"
 ></span>
 
-```js
+```jsx
 import { useState } from 'react';
 
 function App() {
