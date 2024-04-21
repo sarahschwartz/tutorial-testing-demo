@@ -1,25 +1,12 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
-import type { Page } from '@playwright/test';
-
-const START_SERVER_COMMAND = "pnpm pm2 start npm --name 'docs-site' -- run start";
-const STOP_SERVERS = 'pnpm pm2 delete all';
-
-export async function startServers(page: Page) {
-  console.log('STARTING DEV SERVER');
-  const startOutput = execSync(START_SERVER_COMMAND, {
-    encoding: 'utf-8',
-  });
-  console.log('START SERVER OUTPUT:', startOutput);
-  await page.waitForTimeout(10000);
-  console.log('WAITED 10 SECONDS');
-}
 
 export function stopServers() {
   const isRunning = checkIfServersRunning();
   if (isRunning) {
     console.log('STOPPING SERVERS');
     // stop & delete pm2 servers
+    const STOP_SERVERS = 'pnpm pm2 delete all';
     execSync(STOP_SERVERS, {
       encoding: 'utf-8',
     });

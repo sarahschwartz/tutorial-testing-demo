@@ -1,16 +1,8 @@
-import type { Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
-// export function getButtonByText(page: Page, selector: string | RegExp) {
-//   return page.locator('button').getByText(selector);
-// }
-
-// export async function clickByLocator(page: Page, locator: string) {
-//   await page.locator(locator).click();
-// }
-
-// export async function clickByLabel(page: Page, label: string) {
-//   await page.getByLabel(label, { exact: true }).click();
-// }
+export async function clickButtonByText(page: Page, selector: string | RegExp) {
+  await page.locator('button').getByText(selector).click();
+}
 
 export async function clickCopyButton(page: Page, id: string) {
   const buttonAriaLabel = 'Copy code to clipboard';
@@ -21,3 +13,8 @@ export async function clickCopyButton(page: Page, id: string) {
   return rawText;
 }
 
+export async function findText(page: Page, text: string) {
+  const element = page.getByText('Hello World');
+  console.log("ELEMENT:", element)
+  expect(element).toBeTruthy();
+}

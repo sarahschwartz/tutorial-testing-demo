@@ -3,6 +3,8 @@ import type { Page } from '@playwright/test';
 import { runCommand } from './runCommand';
 import { getTestActions } from './getTestActions';
 import { visit } from './visit';
+import { writeToFile } from './files';
+import { findText, clickButtonByText } from './button';
 
 export async function runTest(
   page: Page,
@@ -28,44 +30,18 @@ export async function runTest(
       case 'goToUrl':
         await visit(page, step['data-url']);
         break;
-    //   case 'compareFiles':
-    //     await compareFiles(
-    //       step['data-test-path-name'],
-    //       step['data-ref-path-name']
-    //     );
-    //     break;
-    //   case 'compareToFile':
-    //     await compareToFile(page, step.id, step['data-filepath']);
-    //     break;
-    //   case 'writeToFile':
-    //     await writeToFile(page, step.id, step['data-filepath']);
-    //     break;
-    //   case 'modifyFile':
-    //     await modifyFile(
-    //       page,
-    //       step.id,
-    //       step['data-filepath'],
-    //       Number.parseInt(step['data-add-spaces-before']),
-    //       step['data-add-spaces-after'],
-    //       Number.parseInt(step['data-at-line']),
-    //       step['data-remove-lines'],
-    //       step['data-use-set-data']
-    //     );
-    //     break;
-    //   case 'clickByRole':
-    //     await page
-    //       .getByRole(step['data-role'], { name: step['data-element-name'] })
-    //       .click();
-    //     break;
-    //   case 'clickByTestId':
-    //     await page.getByTestId(step['data-testid']).click();
-    //     break;
-    //   case 'clickByLocator':
-    //     await clickByLocator(page, step['data-click-by-locator']);
-    //     break;
-    //   case 'clickByLabel':
-    //     await clickByLabel(page, step['data-click-by-label']);
-    //     break;
+      case 'wait':
+        await page.waitForTimeout(Number.parseInt(step['data-timeout']));
+        break;
+      case 'writeToFile':
+        await writeToFile(page, step.id, step['data-filepath']);
+        break;
+      case 'clickButtonFromTest':
+        await clickButtonByText(page, step['data-button-text']);
+        break;
+      case 'findText':
+        await findText(page, step['data-find-text']);
+        break;
       default:
         console.log('STEP NOT FOUND:', step);
     }
