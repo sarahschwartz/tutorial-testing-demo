@@ -90,7 +90,7 @@ data-url="http://localhost:4000/"
 
 <span
 id="click-button"
-data-name="clickButtonFromTest"
+data-name="clickButtonFromText"
 data-button-text="Show Secret Text"
 ></span>
 

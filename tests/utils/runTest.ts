@@ -36,7 +36,7 @@ export async function runTest(
       case 'writeToFile':
         await writeToFile(page, step.id, step['data-filepath']);
         break;
-      case 'clickButtonFromTest':
+      case 'clickButtonFromText':
         await clickButtonByText(page, step['data-button-text']);
         break;
       case 'findText':
