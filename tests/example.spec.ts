@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 import { setupFolders, stopServers } from './utils/setup';
 import { runTest } from './utils/runTest';
 
-test('has title', async ({ page, context }) => {
+test('example tutorial works', async ({ page, context }) => {
   // SETUP
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   await setupFolders('project-folder');
